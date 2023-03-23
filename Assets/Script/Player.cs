@@ -2,43 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour // ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 {
-    public Vector2 inputVec;
+    public Vector2 inputVec; // ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ : Vector2, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ inputVec
     public float speed;
-
     Rigidbody2D rigid;
-    SpriteRenderer spriter;
-    Animator anim;
 
-    void Awake()
+    void Awake() 
     {
-        // ¿ÀºêÁ§Æ®¿¡¼­ ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿À´Â ÇÔ¼ö 
-        rigid = GetComponent<Rigidbody2D>();
-        spriter = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>();
+        rigid = GetComponent<Rigidbody2D>(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ùµï¿½2D ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     }
 
     void Update()
     {
-        // XÃà, YÃà ¿òÁ÷ÀÓ
+        // Xï¿½ï¿½, Yï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         inputVec.x = Input.GetAxisRaw("Horizontal");
         inputVec.y = Input.GetAxisRaw("Vertical");
     }
 
-    void FixedUpdate()
+    void FixedUpdate() // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó¿ï¿½ ï¿½Ê¿ï¿½
     {
-        Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
+        //rigid.AddForce(inputVec); // ï¿½ï¿½ ++
+        //rigid.velocity = inputVec; // ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½
 
-        //À§Ä¡ ÀÌµ¿À» ÅëÇÑ ¿òÁ÷ÀÓ
-        rigid.MovePosition(rigid.position + nextVec);
+        Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½Òºï¿½ï¿½ ï¿½Ã°ï¿½
+        rigid.MovePosition(rigid.position + nextVec); // ï¿½ï¿½Ä¡ï¿½Ìµï¿½
+
+
     }
-    void LateUpdate()  
-    {
-        anim.SetFloat("Speed" , inputVec.magnitude);
-        if (inputVec.x != 0)
-        {
-            spriter.flipX = inputVec.x < 0;
-        }
-    }
+
 }
