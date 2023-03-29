@@ -4,22 +4,16 @@ using UnityEngine;
 
 
 public class GameManager : MonoBehaviour
-{ 
-
+{
     public static GameManager instance;
+    public Player player;
 
     public float gameTime; //게임시간
     public float maxGameTime = 2 * 10f; // <-- 최대 게임시간 (현재 20초)
 
-    public Player player;
     void Awake()
     {
-        instance = this;
+        instance = this; // 초기화
     }
 
-
-    void Update()
-    {
-        
-    }
 }
