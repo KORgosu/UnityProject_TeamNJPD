@@ -2,15 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour // ���ӷ��� ������ �ʿ��� Ŭ����
+public class Player : MonoBehaviour 
 {
     public Vector2 inputVec; // ����Ÿ�� : Vector2, ������ inputVec
-    public float speed;
-    Rigidbody2D rigid;
+    public float speed; // 이동 속도
 
-    void Awake() 
+    Rigidbody2D rigid;
+    Animator anim;
+    SpriteRenderer spriter;
+
+    void Awake()
     {
         rigid = GetComponent<Rigidbody2D>(); // ������ٵ�2D ������Ʈ ��������
+        anim = GetComponent<Animator>();
+        spriter = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -30,5 +35,14 @@ public class Player : MonoBehaviour // ���ӷ��� ������ �
 
 
     }
+    void LateUpdate()
+    { anim.SetFloat("Speed", inputVec.magnitude);
+
+        if (inputVec.x != 0)
+        {   
+            spriter.flipX = inputVec.x < 0;
+        }
+    }
 
 }
+
