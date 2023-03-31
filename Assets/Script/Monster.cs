@@ -40,8 +40,34 @@ public class Monster : MonoBehaviour
         spriter.flipX = target.position.x < rigid.position.x;
         
     }
-    
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // 몬스터가 무기랑 충돌할때만
+        if (!collision.CompareTag("Bullet")) // Bullet이랑 충돌한게 아니면
+        {
+            return;
+        }
+
+        /* 무기에 맞으면 몬스터 체력이 깎이는 함수임
+         * 몬스터 체력부분 구현되면 주석제거 예정
+        health -= collision.GetComponent<Bullet>().damage; // 피격 계산하기
+        if (health > 0)
+        {
+
+        }
+        else
+        {
+            Dead();
+        }
+
+
+        */
+        void Dead()
+        {
+            gameObject.SetActive(false); // 비활성화
+        }
+    }
 
 
 
