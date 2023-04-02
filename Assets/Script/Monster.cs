@@ -44,7 +44,7 @@ public class Monster : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 몬스터가 무기랑 충돌할때만
-        if (!collision.CompareTag("Bullet")) // Bullet이랑 충돌한게 아니면
+        if (!collision.CompareTag("Bullet") || !isLive) // Bullet이랑 충돌한게 아니면
         {
             return;
         }
@@ -68,6 +68,9 @@ public class Monster : MonoBehaviour
             gameObject.SetActive(false); // 비활성화
         }
     }
+
+    /*GameManager.instance.kill++;  몬스터 사망구현시 같이 추가
+    GameManager.instance.GetExp();*/
 
 
 
