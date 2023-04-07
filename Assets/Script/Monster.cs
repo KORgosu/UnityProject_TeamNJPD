@@ -10,7 +10,7 @@ public class Monster : MonoBehaviour
     public RuntimeAnimatorController[] animCon;
     public Rigidbody2D target; // 타겟 설정    
 
-    bool isLive; // 살아있는지 
+    bool isLive = true; // 살아있는지 
 
     Rigidbody2D rigid; // 물리 움직임 선언
     Animator anim;
@@ -32,18 +32,29 @@ public class Monster : MonoBehaviour
 
         Vector2 dirVec = target.position - rigid.position;
         Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
-        
-        //���� �ʱ�ȭ
         rigid.MovePosition(rigid.position + nextVec);
         rigid.velocity = Vector2.zero;
     }
     void LateUpdate() {
         if (!isLive)
-            return;
-    
-        
-        spriter.flipX = target.position.x < rigid.position.x;
-        
+            return;      
+        spriter.flipX = target.position.x < rigid.position.x;     
+    }
+
+    private void OnEnable()
+    {
+        target = GameManager.instance.player.GetComponent<Rigidbody2D>();
+        isLive = true;
+        health = maxHealth;
+    }
+
+    public void Init(SpawnData data)
+    {
+        anim.runtimeAnimatorController = animCon[data.spriteType];
+        speed = data.speed;
+        maxHealth = data.health;
+        health = data.health;
+         
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -54,8 +65,8 @@ public class Monster : MonoBehaviour
             return;
         }
 
-        /* 무기에 맞으면 몬스터 체력이 깎이는 함수임
-         * 몬스터 체력부분 구현되면 주석제거 예정
+         //무기에 맞으면 몬스터 체력이 깎이는 함수임
+         //몬스터 체력부분 구현되면 주석제거 예정
         health -= collision.GetComponent<Bullet>().damage; // 피격 계산하기
         if (health > 0)
         {
@@ -66,8 +77,6 @@ public class Monster : MonoBehaviour
             Dead();
         }
 
-
-        */
         void Dead()
         {
             gameObject.SetActive(false); // 비활성화
