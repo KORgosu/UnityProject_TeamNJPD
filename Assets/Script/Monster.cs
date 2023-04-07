@@ -5,17 +5,22 @@ using UnityEngine;
 public class Monster : MonoBehaviour
 {
     public float speed; // 속도
+    public float health;
+    public float maxHealth;
+    public RuntimeAnimatorController[] animCon;
     public Rigidbody2D target; // 타겟 설정    
 
-    bool isLive = true; // 살아있는지 
+    bool isLive; // 살아있는지 
 
     Rigidbody2D rigid; // 물리 움직임 선언
+    Animator anim;
     SpriteRenderer spriter; //스프라이트 선언
 
     void Awake() //변수 초기화
     {
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
 
     }
 
