@@ -10,7 +10,15 @@ public class Weapon : MonoBehaviour
     public int count; // weapon 개수 몇개배치?
     public float speed; // cycle speed
 
-    private void Start()
+    float timer;
+    Player player;
+
+    private void Awake()
+    {
+        player = GetComponentInParent<Player>();
+    }
+
+    void Start()
     {
         Init(); // 변수초기화
     }
@@ -24,6 +32,13 @@ public class Weapon : MonoBehaviour
                 transform.Rotate(Vector3.back * speed * Time.deltaTime);
                 break;
             default:
+                timer += Time.deltaTime;
+
+                if (timer > speed)
+                {
+                    timer = 0f;
+                    FireBullet();
+                }
                 break;
         }
 
@@ -53,7 +68,8 @@ public class Weapon : MonoBehaviour
                 speed = 150; // - 부호로 해야 시계방향으로 돌거임
                 Batch();
                 break;
-            default:
+            default:// 원거리
+                speed = 1.5f; // 발사속도 
                 break;
         }
     }
@@ -81,7 +97,26 @@ public class Weapon : MonoBehaviour
             Vector3 rotateVector = Vector3.forward * 360 * i / count;
             bullet.Rotate(rotateVector);
             bullet.Translate(bullet.up * 1.4f, Space.World);
-            bullet.GetComponent<Bullet>().Init(damage, -1); // 무한으로 관통 : -1 is infinity per.
+            bullet.GetComponent<Bullet>().Init(damage, -1, Vector3.zero); // 무한으로 관통 : -1 is infinity per.
         }
+    }
+
+    void FireBullet()
+    {
+        if (!player.scanner.nearestTarget) // 가까이에 추적대상이 없으면 아무일도 안함
+        {
+            return;
+        }
+
+        Vector3 targetPos = player.scanner.nearestTarget.position; // 타겟의 위치는 플레이어에 가장 가까운 몬스터
+        Vector3 dir = targetPos - transform.position;
+        dir = dir.normalized;
+
+        Transform bullet = GameManager.instance.pool.Get(prefabID).transform;
+        bullet.position = transform.position;
+
+        //회전관련
+        bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+        bullet.GetComponent<Bullet>().Init(damage, count, dir);
     }
 }
