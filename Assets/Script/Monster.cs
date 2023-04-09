@@ -13,21 +13,24 @@ public class Monster : MonoBehaviour
     bool isLive = true; // 살아있는지 
 
     Rigidbody2D rigid; // 물리 움직임 선언
+    Collider2D coll;
     Animator anim;
     SpriteRenderer spriter; //스프라이트 선언
+    WaitForFixedUpdate wait;
 
     void Awake() //변수 초기화
     {
         rigid = GetComponent<Rigidbody2D>();
+        coll = GetComponent<Collider2D>();
         spriter = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-
+        wait = new WaitForFixedUpdate();
     }
 
 
     void FixedUpdate()
     {
-        if (!isLive)
+        if (!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
             return;
 
         Vector2 dirVec = target.position - rigid.position;
@@ -45,6 +48,10 @@ public class Monster : MonoBehaviour
     {
         target = GameManager.instance.player.GetComponent<Rigidbody2D>();
         isLive = true;
+        coll.enabled = true;
+        rigid.simulated = true; // 물리적 활성화
+        spriter.sortingOrder = 2;
+        anim.SetBool("Dead", false); // 생존상태로 전환
         health = maxHealth;
     }
 
@@ -68,13 +75,30 @@ public class Monster : MonoBehaviour
          //무기에 맞으면 몬스터 체력이 깎이는 함수임
          //몬스터 체력부분 구현되면 주석제거 예정
         health -= collision.GetComponent<Bullet>().damage; // 피격 계산하기
+        StartCoroutine(KnockBack());
+
         if (health > 0)
         {
-
+            anim.SetTrigger("Hit");
         }
         else
         {
-            Dead();
+            // 몬스터 사망
+            isLive = false;
+            coll.enabled = false;
+            rigid.simulated = false; // 물리적 비활성화
+            spriter.sortingOrder = 1;
+            anim.SetBool("Dead", true); // 사망상태로 전환
+        }
+
+        //코루틴 (넉백함수)
+        IEnumerator KnockBack()
+        {
+            yield return wait; // 프레임 딜레이
+            Vector3 playerPos = GameManager.instance.player.transform.position;
+            Vector3 dirVec = transform.position - playerPos;
+            rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse); // 즉발적으로 (Impulse) 넉백
+            
         }
 
         void Dead()
