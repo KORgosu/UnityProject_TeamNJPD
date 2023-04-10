@@ -13,7 +13,7 @@ public class PoolManager : MonoBehaviour
 
     private void Awake() // Just 1 Time 
     {
-        //prefab °³¼ö¶û ¶È°°ÀÌ ÃÊ±âÈ­
+        //prefab ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½È°ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
         pools = new List<GameObject>[prefabs.Length];
         
         for (int i = 0; i < pools.Length; i++)
@@ -28,19 +28,19 @@ public class PoolManager : MonoBehaviour
 
         foreach (GameObject item in pools[i])
         {
-            if(!item.activeSelf)//¾ÆÀÌÅÛÀÌ ºñÈ°¼ºÈ­ »óÅÂ¸é
+            if(!item.activeSelf)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ ï¿½ï¿½ï¿½Â¸ï¿½
             {
                 select = item;
-                select.SetActive(true); // È°¼ºÈ­·Î ÀüÈ¯
+                select.SetActive(true); // È°ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½È¯
                 break;
             }
         }
 
-        if (select == null) // ¸¸¾à select º¯¼ö¿¡ ¾Æ¹«°Íµµ ¾øÀ¸¸é
+        if (select == null) // ï¿½ï¿½ï¿½ï¿½ select ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ¹ï¿½ï¿½Íµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         {
-            // ¿øº» ¿ÀºêÁ§Æ® º¹Á¦ÇØ¼­ ------------------>
-            select = Instantiate(prefabs[i], transform/*ÀÚ±âÀÚ½Å¿¡ ³ÖÀ½*/);
-            pools[i].Add(select); // pool¿¡µµ µî·ÏÇÏ±â
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ------------------>
+            select = Instantiate(prefabs[i], transform/*ï¿½Ú±ï¿½ï¿½Ú½Å¿ï¿½ ï¿½ï¿½ï¿½ï¿½*/);
+            pools[i].Add(select); // poolï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
         }
 
         return select;
