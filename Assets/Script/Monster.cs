@@ -67,7 +67,7 @@ public class Monster : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 몬스터가 무기랑 충돌할때만
-        if (!collision.CompareTag("Bullet")) // Bullet이랑 충돌한게 아니면
+        if (!collision.CompareTag("Bullet") || !isLive) // Bullet이랑 충돌한게 아니면
         {
             return;
         }
@@ -89,6 +89,8 @@ public class Monster : MonoBehaviour
             rigid.simulated = false; // 물리적 비활성화
             spriter.sortingOrder = 1;
             anim.SetBool("Dead", true); // 사망상태로 전환
+            GameManager.instance.kill++;
+            GameManager.instance.GetExp();
         }
 
         //코루틴 (넉백함수)

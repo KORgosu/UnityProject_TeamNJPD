@@ -7,7 +7,6 @@ public class PoolManager : MonoBehaviour
     // Prefabs storage val
     public GameObject[] prefabs;
 
-
     // Pool storage List
     List<GameObject>[] pools;
 

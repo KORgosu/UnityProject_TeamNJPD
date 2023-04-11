@@ -69,7 +69,7 @@ public class Weapon : MonoBehaviour
                 Batch();
                 break;
             default:// 원거리
-                speed = 1.5f; // 발사속도 
+                speed = 2.5f; // 발사속도 
                 break;
         }
     }

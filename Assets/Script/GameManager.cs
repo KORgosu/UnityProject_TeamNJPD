@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
     [Header("# Game Control")]
     public bool isLive;
     [Header("# Player Info")]
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
     [Header("# Game Object")]
     public Player player;
     public PoolManager pool;
+    
     
 
 
@@ -32,7 +34,7 @@ public class GameManager : MonoBehaviour
     void Start() {
         health = maxHealth;
     }
-    public void GetExp()
+    public void GetExp() // 경험치증가함수
     {
         exp++;
 
