@@ -44,4 +44,31 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void Update() 
+    {
+        if(!isLive)
+           return;
+
+        gameTime += Time.deltaTime;
+
+        if (gameTime > maxGameTime) {
+            gameTime = maxGameTime;
+        }
+    }
+
+    public void Stop() //멈추기
+    {
+        isLive = false;
+        Time.timeScale = 0;      //유니티의 시간 속도, 0이면 멈춤
+
+    }
+
+    public void Resume() //게임 재개
+    {
+        isLive = true;
+        Time.timeScale = 1;
+
+    }
+
+
 }

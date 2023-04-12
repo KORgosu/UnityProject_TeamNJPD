@@ -30,6 +30,9 @@ public class Monster : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         if (!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
             return;
 
@@ -39,6 +42,9 @@ public class Monster : MonoBehaviour
         rigid.velocity = Vector2.zero;
     }
     void LateUpdate() {
+        if (!GameManager.instance.isLive)
+            return;
+            
         if (!isLive)
             return;      
         spriter.flipX = target.position.x < rigid.position.x;     

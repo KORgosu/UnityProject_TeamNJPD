@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public int id;// ¹«±â ID
+    public int id;// ï¿½ï¿½ï¿½ï¿½ ID
     public int prefabID; // prefab Id
     public float damage; // damage
-    public int count; // weapon °³¼ö ¸î°³¹èÄ¡?
+    public int count; // weapon ï¿½ï¿½ï¿½ï¿½ ï¿½î°³ï¿½ï¿½Ä¡?
     public float speed; // cycle speed
 
     float timer;
@@ -20,12 +20,15 @@ public class Weapon : MonoBehaviour
 
     void Start()
     {
-        Init(); // º¯¼öÃÊ±âÈ­
+        Init(); // ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½È­
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager.instance.isLive)
+            return;
+            
         switch (id)
         {
             case 0:
@@ -65,11 +68,11 @@ public class Weapon : MonoBehaviour
         switch(id)
         {
             case 0:
-                speed = 150; // - ºÎÈ£·Î ÇØ¾ß ½Ã°è¹æÇâÀ¸·Î µ¹°ÅÀÓ
+                speed = 150; // - ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ø¾ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 Batch();
                 break;
-            default:// ¿ø°Å¸®
-                speed = 2.5f; // ¹ß»ç¼Óµµ 
+            default:// ï¿½ï¿½ï¿½Å¸ï¿½
+                speed = 2.5f; // ï¿½ß»ï¿½Óµï¿½ 
                 break;
         }
     }
@@ -78,7 +81,7 @@ public class Weapon : MonoBehaviour
     {
         for (int i = 0; i < count; i++)
         {
-            // ºÎ¸ð¸¦ PoolManager -> Weapon0 À¸·Î ¹Ù²Ù±â
+            // ï¿½Î¸ï¿½ PoolManager -> Weapon0 ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ù±ï¿½
             Transform bullet;
 
             if (i < transform.childCount)
@@ -88,34 +91,34 @@ public class Weapon : MonoBehaviour
             else
             {
                 bullet = GameManager.instance.pool.Get(prefabID).transform;
-                bullet.parent = transform; // ºÎ¸ð¸¦ Weapon 0À¸·Î ¼³Á¤
+                bullet.parent = transform; // ï¿½Î¸ï¿½ Weapon 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             }
                 
-            bullet.localPosition = Vector3.zero; // ÇÃ·¹ÀÌ¾îÀÇ À§Ä¡·Î ¼ÒÈ¯À§Ä¡ ÃÊ±âÈ­
+            bullet.localPosition = Vector3.zero; // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½Ä¡ ï¿½Ê±ï¿½È­
             bullet.localRotation = Quaternion.identity;
 
             Vector3 rotateVector = Vector3.forward * 360 * i / count;
             bullet.Rotate(rotateVector);
             bullet.Translate(bullet.up * 1.4f, Space.World);
-            bullet.GetComponent<Bullet>().Init(damage, -1, Vector3.zero); // ¹«ÇÑÀ¸·Î °üÅë : -1 is infinity per.
+            bullet.GetComponent<Bullet>().Init(damage, -1, Vector3.zero); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : -1 is infinity per.
         }
     }
 
     void FireBullet()
     {
-        if (!player.scanner.nearestTarget) // °¡±îÀÌ¿¡ ÃßÀû´ë»óÀÌ ¾øÀ¸¸é ¾Æ¹«ÀÏµµ ¾ÈÇÔ
+        if (!player.scanner.nearestTarget) // ï¿½ï¿½ï¿½ï¿½ï¿½Ì¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ¹ï¿½ï¿½Ïµï¿½ ï¿½ï¿½ï¿½ï¿½
         {
             return;
         }
 
-        Vector3 targetPos = player.scanner.nearestTarget.position; // Å¸°ÙÀÇ À§Ä¡´Â ÇÃ·¹ÀÌ¾î¿¡ °¡Àå °¡±î¿î ¸ó½ºÅÍ
+        Vector3 targetPos = player.scanner.nearestTarget.position; // Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Vector3 dir = targetPos - transform.position;
         dir = dir.normalized;
 
         Transform bullet = GameManager.instance.pool.Get(prefabID).transform;
         bullet.position = transform.position;
 
-        //È¸Àü°ü·Ã
+        //È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
         bullet.GetComponent<Bullet>().Init(damage, count, dir);
     }

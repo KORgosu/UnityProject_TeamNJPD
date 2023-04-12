@@ -17,8 +17,11 @@ public class Spawner : MonoBehaviour
     }
     void Update()
     {
+        if (!GameManager.instance.isLive)
+            return;
+            
         timer += Time.deltaTime;
-        level = Mathf.FloorToInt(GameManager.instance.gameTime / 10f); // ¹üÀ§ ¿À¹ö ¹æÁö
+        level = Mathf.FloorToInt(GameManager.instance.gameTime / 10f); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
         if (timer > (level == 0 ? 0.5f : 0.2f))
         {
@@ -34,7 +37,7 @@ public class Spawner : MonoBehaviour
     }
 }
 
-[System.Serializable] // Á÷·ÄÈ­
+[System.Serializable] // ï¿½ï¿½ï¿½ï¿½È­
 public class SpawnData
 {
     public int spriteType;
