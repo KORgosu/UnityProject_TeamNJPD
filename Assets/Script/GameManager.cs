@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     [Header("# Game Control")]
     public bool isLive;
+    public float gameTime;
+    public float maxGameTime = 2 * 10f;
     [Header("# Player Info")]
     public float health;
     public float maxHealth = 100;
@@ -19,21 +22,41 @@ public class GameManager : MonoBehaviour
     [Header("# Game Object")]
     public Player player;
     public PoolManager pool;
-    
-    
+    public GameObject uiResult;
 
-
-    public float gameTime; //게임시간
-    public float maxGameTime = 2 * 10f; // <-- 최대 게임시간 (현재 20초)
 
     void Awake()
     {
         instance = this; // 초기화
     }
 
-    void Start() {
+    public void GameStart() {
         health = maxHealth;
+        isLive = true;
     }
+
+    public void GameOver()
+    {
+        StartCoroutine(GameOverRoutine());
+    }
+
+    IEnumerator GameOverRoutine()
+    {
+        isLive = false;
+
+        yield return new WaitForSeconds(0.5f);
+
+        uiResult.SetActive(true);
+        Stop();
+    }
+    
+    public void GameRetry()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+
+
     public void GetExp() // 경험치증가함수
     {
         exp++;

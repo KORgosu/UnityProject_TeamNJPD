@@ -24,13 +24,17 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        
+        if (!GameManager.instance.isLive)
+            return;
         inputVec.x = Input.GetAxisRaw("Horizontal");
         inputVec.y = Input.GetAxisRaw("Vertical");
     }
 
     void FixedUpdate() 
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         //rigid.AddForce(inputVec); 
         //rigid.velocity = inputVec; 
 
@@ -40,7 +44,11 @@ public class Player : MonoBehaviour
 
     }
     void LateUpdate()
-    { anim.SetFloat("Speed", inputVec.magnitude);
+    {
+        if (!GameManager.instance.isLive)
+            return; 
+            
+        anim.SetFloat("Speed", inputVec.magnitude);
 
         if (inputVec.x != 0)
         {   
@@ -61,6 +69,7 @@ public class Player : MonoBehaviour
                 transform.GetChild(index).gameObject.SetActive(false);
             }
             anim.SetTrigger("Dead"); //사망 애니메이션 활성화
+            GameManager.instance.GameOver();
         }
     }
 }

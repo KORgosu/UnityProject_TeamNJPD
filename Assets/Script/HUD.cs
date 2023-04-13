@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
-    public enum InfoType { Exp, Level, Kill, Time, Health }
+    public enum InfoType { Exp, Level, Kill, Time, Health }  //UI창에 나타 낼 변수들 각각 "경험치, 레벨, 죽인 수, 시간 ,체력"
     public InfoType type;
 
     Text myText;
@@ -18,7 +18,7 @@ public class HUD : MonoBehaviour
         
     }
 
-    private void LateUpdate() 
+    private void LateUpdate()  //GameManager 스크립트에 있는 자료를 가져오는 함수
     {
         switch (type) {          
             case InfoType.Exp:
@@ -34,13 +34,18 @@ public class HUD : MonoBehaviour
 
                 break;
             case InfoType.Kill:
+                myText.text = string.Format("{0:F0}", GameManager.instance.kill);
 
                 break;
             case InfoType.Level:
+                myText.text = string.Format("Lv.{0:F0}", GameManager.instance.level);
 
                 break;
             case InfoType.Time:
-
+                float reaminTime = GameManager.instance.maxGameTime - GameManager.instance.gameTime;
+                int min = Mathf.FloorToInt(reaminTime / 60);
+                int sec = Mathf.FloorToInt(reaminTime % 60);
+                myText.text = string.Format("{0:D2}:{1:D2}" , min, sec);
                 break; 
                 
         }
