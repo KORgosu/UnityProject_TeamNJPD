@@ -8,6 +8,8 @@ TagManager:
   - Ground
   - Area
   - Bullet
+  - ExpItem
+  - ItemArea
   layers:
   - Default
   - TransparentFX

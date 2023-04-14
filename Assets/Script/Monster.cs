@@ -96,7 +96,7 @@ public class Monster : MonoBehaviour
             spriter.sortingOrder = 1;
             anim.SetBool("Dead", true); // 사망상태로 전환
             GameManager.instance.kill++;
-            GameManager.instance.GetExp();
+            //GameManager.instance.GetExp();
         }
 
         //코루틴 (넉백함수)
