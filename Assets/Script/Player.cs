@@ -72,5 +72,19 @@ public class Player : MonoBehaviour
             GameManager.instance.GameOver();
         }
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ExpItem"))//TestItem 태그를 가진 아이템과 충돌할시 작동
+        {
+            Transform itemAreaTransform = transform.Find("ItemArea");//ItemaArea 이름을 가진 자식객체의 콜라이더를 사용
+
+            if (itemAreaTransform != null && collision.IsTouching(itemAreaTransform.GetComponent<Collider2D>()))
+            {
+                GameManager.instance.GetExp();
+                Destroy(collision.gameObject);
+            }
+        }
+    }
 }
 
