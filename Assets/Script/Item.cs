@@ -10,3 +10,4 @@ public class Item : MonoBehaviour
         transform.Rotate(Vector3.up * 1);
     }
 }
+//
