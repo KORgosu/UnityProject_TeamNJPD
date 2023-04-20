@@ -11,8 +11,9 @@ public class GameManager : MonoBehaviour
     [Header("# Game Control")]
     public bool isLive;
     public float gameTime;
-    public float maxGameTime = 2 * 10f;
+    public float maxGameTime = 3 * 10f;
     [Header("# Player Info")]
+    public int PlayerId;
     public float health;
     public float maxHealth = 100;
     public int level;
@@ -22,17 +23,24 @@ public class GameManager : MonoBehaviour
     [Header("# Game Object")]
     public Player player;
     public PoolManager pool;
-    public GameObject uiResult;
+    public Result uiResult;
+    public GameObject enemyCleaner;
+
 
 
     void Awake()
     {
         instance = this; // 초기화
+  
     }
 
-    public void GameStart() {
+
+    public void GameStart(int id) {
+        PlayerId = id;
         health = maxHealth;
-        isLive = true;
+        
+        Resume();
+        
     }
 
     public void GameOver()
@@ -46,10 +54,29 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        uiResult.SetActive(true);
+        uiResult.gameObject.SetActive(true);
+        uiResult.Lose();
         Stop();
     }
-    
+
+
+    public void GameVictory()
+    {
+        StartCoroutine(GameVictoryRoutine());
+    }
+
+    IEnumerator GameVictoryRoutine()
+    {
+        isLive = false;
+        enemyCleaner.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f);
+
+        uiResult.gameObject.SetActive(true);
+        uiResult.Win();
+        Stop();
+    }
+
     public void GameRetry()
     {
         SceneManager.LoadScene(0);
@@ -59,6 +86,9 @@ public class GameManager : MonoBehaviour
 
     public void GetExp() // 경험치증가함수
     {
+        if (!isLive) //게임 승리시 몬스터 전부 죽게 설정했는데 그 때 경험치 먹는거 막아주는 조건문
+            return;
+
         exp++;
 
         if (exp == nextExp[level])  {
@@ -76,6 +106,7 @@ public class GameManager : MonoBehaviour
 
         if (gameTime > maxGameTime) {
             gameTime = maxGameTime;
+            GameVictory();
         }
     }
 
