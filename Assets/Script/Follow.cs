@@ -13,7 +13,11 @@ public class Follow : MonoBehaviour
     
     void FixedUpdate()
     {
+        if (rect == null)
+        {
+            Debug.LogError("RectTransform not found in Follow script");
+            return;
+        }
         rect.position = Camera.main.WorldToScreenPoint(GameManager.instance.player.transform.position);
-    
     }
 }

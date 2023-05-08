@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public float gameTime;
     public float maxGameTime = 2 * 10f;
     [Header("# Player Info")]
+    public int playerId;
     public float health;
     public float maxHealth = 100;
     public int level;
@@ -22,17 +23,22 @@ public class GameManager : MonoBehaviour
     [Header("# Game Object")]
     public Player player;
     public PoolManager pool;
-    public GameObject uiResult;
-
+    public Result uiResult;
+    public LevelUp uiLevelUp;
+    public GameObject enemyCleaner;
 
     void Awake()
     {
         instance = this; // 초기화
     }
 
-    public void GameStart() {
+    public void GameStart(int id) {
+        playerId = id;
         health = maxHealth;
-        isLive = true;
+
+        player.gameObject.SetActive(true); //플레이어 활성화
+        uiLevelUp.Select(playerId % 2); // 무기 지급
+        Resume(); //재개
     }
 
     public void GameOver()
@@ -46,7 +52,25 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        uiResult.SetActive(true);
+        uiResult.gameObject.SetActive(true);
+        uiResult.Lose();
+        Stop();
+    }
+
+    public void GameVictory()
+    {
+        StartCoroutine(GameVictoryRoutine());
+    }
+
+    IEnumerator GameVictoryRoutine()
+    {
+        isLive = false;
+        enemyCleaner.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f);
+
+        uiResult.gameObject.SetActive(true);
+        uiResult.Win();
         Stop();
     }
     
@@ -59,13 +83,19 @@ public class GameManager : MonoBehaviour
 
     public void GetExp() // 경험치증가함수
     {
+        if (!isLive)
+            return;
+            
         exp++;
 
-        if (exp == nextExp[level])  {
+        if (exp == nextExp[Mathf.Min(level, nextExp.Length-1)])  {
             level++;
             exp = 0;
+            uiLevelUp.Show();
         }
     }
+
+
 
     void Update() 
     {
@@ -76,6 +106,7 @@ public class GameManager : MonoBehaviour
 
         if (gameTime > maxGameTime) {
             gameTime = maxGameTime;
+            GameVictory();
         }
     }
 

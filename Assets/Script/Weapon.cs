@@ -15,15 +15,9 @@ public class Weapon : MonoBehaviour
 
     private void Awake()
     {
-        player = GetComponentInParent<Player>();
+        player = GameManager.instance.player;
     }
 
-    void Start()
-    {
-        Init(); // �����ʱ�ȭ
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (!GameManager.instance.isLive)
@@ -56,15 +50,38 @@ public class Weapon : MonoBehaviour
         this.damage = damage;
         this.count += count;
 
-        if (id == 0)
-        {
+        if (id == 0)  
             Batch();
-        }
+
+        player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver); // 무기가 업그레이드 될 때
+        
     }
     
 
-    public void Init()
+    public void Init(ItemData data)
     {
+
+        // Basic Set
+        name = "Weapon " + data.itemId;
+        transform.parent = player.transform;
+        transform.localPosition = Vector3.zero;
+
+
+        // Property Set <-- 무기 속성 변수를 스크립터블 오브젝트 데이터로 초기화
+        id = data.itemId;
+        damage = data.baseDamage;
+        count = data.baseCount;
+
+        for (int index=0; index < GameManager.instance.pool.prefabs.Length; index++) {
+            if (data.projectile == GameManager.instance.pool.prefabs[index]) {
+                prefabID = index;
+                break;
+            }
+        }
+
+
+
+
         switch(id)
         {
             case 0:
@@ -75,6 +92,9 @@ public class Weapon : MonoBehaviour
                 speed = 2.5f; // �߻�ӵ� 
                 break;
         }
+
+        player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver); // 무기가 새로 생성될 때 
+
     }
 
     void Batch()

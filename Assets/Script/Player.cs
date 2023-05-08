@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public Vector2 inputVec; // ����Ÿ�� : Vector2, ������ inputVec
     public float speed; // 이동 속도
     public Scanner scanner;
+    public RuntimeAnimatorController[] animCon;
 
     Rigidbody2D rigid;
     Animator anim;
@@ -17,9 +18,14 @@ public class Player : MonoBehaviour
     void Awake() // 초기화
     {
         rigid = GetComponent<Rigidbody2D>(); 
-        anim = GetComponent<Animator>();
         spriter = GetComponent<SpriteRenderer>();
         scanner = GetComponent<Scanner>();
+    }
+
+    void OnEnable()
+    {
+        anim = GetComponent<Animator>();
+        anim.runtimeAnimatorController = animCon[GameManager.instance.playerId];
     }
 
     void Update()
