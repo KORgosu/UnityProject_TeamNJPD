@@ -3,7 +3,7 @@ UNITY TEAM GAME PROJECT_TEAM_NJPD
 Vampire Survival Like Game, 2D
 
 
-[두 번째 팀 게임 제작 프로젝트, 뱀서라이크 장르, 유니티 플랫폼을 이용하여 제작]
+[Team 나주포대 두 번째 팀 게임 제작 프로젝트, 뱀서라이크 장르, 유니티 플랫폼을 이용하여 제작]
 
 
 사용언어 : C#
