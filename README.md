@@ -1,6 +1,6 @@
 # UnityProject_TeamNJPD
 UNITY TEAM GAME PROJECT_TEAM_NJPD
-Vampire Survival Like Game, 2D
+Vampire Survival Like Game, 2D, 
 
 
 [Team 나주포대 두 번째 팀 게임 제작 프로젝트, 뱀서라이크 장르, 유니티 플랫폼을 이용하여 제작]
@@ -8,7 +8,7 @@ Vampire Survival Like Game, 2D
 
 사용언어 : C#
 
-사용툴 : 노션, 유니티, 깃(포크)
+사용툴 : 노션, 유니티(2021.3.2.f1 ver), 깃(포크)
 
 목적 : 팀프로젝트 진행 중 파트분배의 어려움을 느껴 좀 더 체계적인 팀 빌딩 능력을 기르기 위해 팀프로젝트 진행
 
