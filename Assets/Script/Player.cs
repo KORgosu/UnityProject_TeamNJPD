@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public Vector2 inputVec; // ����Ÿ�� : Vector2, ������ inputVec
     public float speed; // 이동 속도
     public Scanner scanner;
+    //public Hand[] hands;
     public RuntimeAnimatorController[] animCon;
 
     Rigidbody2D rigid;
@@ -19,14 +20,17 @@ public class Player : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>(); 
         spriter = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
+        //hands = GetGomponetsInChildren<Hand>(true);
     }
 
+    /*
     void OnEnable()
     {
-        anim = GetComponent<Animator>();
         anim.runtimeAnimatorController = animCon[GameManager.instance.playerId];
     }
+    */
 
     void Update()
     {
@@ -44,7 +48,7 @@ public class Player : MonoBehaviour
         //rigid.AddForce(inputVec); 
         //rigid.velocity = inputVec; 
 
-        Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime; // ���������� �ϳ��� �Һ�� �ð�
+        Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + nextVec); 
 
 

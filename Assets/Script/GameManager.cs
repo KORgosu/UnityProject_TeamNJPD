@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public float gameTime;
     public float maxGameTime = 2 * 10f;
     [Header("# Player Info")]
-    public int playerId;
+    public int playerId; // 남자농부 vs 농부딸
     public float health;
     public float maxHealth = 100;
     public int level;
@@ -29,12 +29,14 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+
         instance = this; // 초기화
     }
 
     public void GameStart(int id) {
         playerId = id;
         health = maxHealth;
+        isLive = true;
 
         player.gameObject.SetActive(true); //플레이어 활성화
         uiLevelUp.Select(playerId % 2); // 무기 지급
@@ -52,7 +54,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        uiResult.gameObject.SetActive(true);
+        uiResult.gameObject.gameObject.SetActive(true);
         uiResult.Lose();
         Stop();
     }
