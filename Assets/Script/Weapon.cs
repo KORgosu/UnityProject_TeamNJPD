@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public int id;// ���� ID
-    public int prefabID; // prefab Id
-    public float damage; // damage
-    public int count; // weapon ���� ���ġ?
-    public float speed; // cycle speed
+    public int id;// 
+    public int prefabID; //
+    public float damage; // 
+    public int count; // 
+    public float speed; //
 
     float timer;
     Player player;
+
+    private void Start()
+    {
+        Init();
+    }
 
     private void Awake()
     {
@@ -20,8 +25,10 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
+        /*
         if (!GameManager.instance.isLive)
             return;
+        */
             
         switch (id)
         {
@@ -34,18 +41,18 @@ public class Weapon : MonoBehaviour
                 if (timer > speed)
                 {
                     timer = 0f;
-                    FireBullet();
+                    Fire();
                 }
                 break;
         }
 
         if (Input.GetButtonDown("Jump"))
         {
-            LevelUp(20, 5);
+            LevelUp(10, 1);
         }
     }
 
-    public void LevelUp(float damage, int count)
+    public void LevelUp(float damage, int count) // 레벨업할때마다 공격력과 무기개수 증가
     {
         this.damage = damage;
         this.count += count;
@@ -58,9 +65,9 @@ public class Weapon : MonoBehaviour
     }
     
 
-    public void Init(ItemData data)
+    public void Init()
     {
-
+        /*
         // Basic Set
         name = "Weapon " + data.itemId;
         transform.parent = player.transform;
@@ -78,18 +85,18 @@ public class Weapon : MonoBehaviour
                 break;
             }
         }
-
+        */
 
 
 
         switch(id)
         {
             case 0:
-                speed = 150; // - ��ȣ�� �ؾ� �ð�������� ������
+                speed = -150; 
                 Batch();
                 break;
-            default:// ���Ÿ�
-                speed = 2.5f; // �߻�ӵ� 
+            default:
+                speed = 2.5f;
                 break;
         }
 
@@ -97,48 +104,47 @@ public class Weapon : MonoBehaviour
 
     }
 
-    void Batch()
+    void Batch() // 무기배치함수
     {
         for (int i = 0; i < count; i++)
         {
-            // �θ� PoolManager -> Weapon0 ���� �ٲٱ�
             Transform bullet;
 
-            if (i < transform.childCount)
+            if (i < transform.childCount) // 가지고있는 자식의 개수(무기의 개수)
             {
-                bullet = transform.GetChild(i);
+                bullet = transform.GetChild(i); // GetChild 함수로 bullet 가져오기
             }
             else
             {
-                bullet = GameManager.instance.pool.Get(prefabID).transform;
-                bullet.parent = transform; // �θ� Weapon 0���� ����
+                bullet = GameManager.instance.pool.Get(prefabID).transform; // Weapon 0으로
+                bullet.parent = transform; // 자식 오브젝트 들어감
             }
                 
-            bullet.localPosition = Vector3.zero; // �÷��̾��� ��ġ�� ��ȯ��ġ �ʱ�ȭ
-            bullet.localRotation = Quaternion.identity;
+            bullet.localPosition = Vector3.zero; // bullet 위치를 플레이어 초기화
+            bullet.localRotation = Quaternion.identity; // 회전값도 초기화
 
-            Vector3 rotateVector = Vector3.forward * 360 * i / count;
-            bullet.Rotate(rotateVector);
-            bullet.Translate(bullet.up * 1.4f, Space.World);
-            bullet.GetComponent<Bullet>().Init(damage, -1, Vector3.zero); // �������� ���� : -1 is infinity per.
+            Vector3 rotateVector = Vector3.forward * 360 * i / count; // 근접무기 뺑뺑이 각도 설정
+            bullet.Rotate(rotateVector); // 근접무기 회전
+            bullet.Translate(bullet.up * 1.4f, Space.World); // 무기가 배치될 곳은 캐릭터로부터 1.4 공간
+            bullet.GetComponent<Bullet>().Init(damage, -1, Vector3.zero); //  : -1 is infinity per.
         }
     }
 
-    void FireBullet()
+    void Fire()
     {
-        if (!player.scanner.nearestTarget) // �����̿� ��������� ������ �ƹ��ϵ� ����
+        if (!player.scanner.nearestTarget)
         {
             return;
         }
 
-        Vector3 targetPos = player.scanner.nearestTarget.position; // Ÿ���� ��ġ�� �÷��̾ ���� ����� ����
+        Vector3 targetPos = player.scanner.nearestTarget.position;
         Vector3 dir = targetPos - transform.position;
         dir = dir.normalized;
 
         Transform bullet = GameManager.instance.pool.Get(prefabID).transform;
         bullet.position = transform.position;
 
-        //ȸ������
+        
         bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
         bullet.GetComponent<Bullet>().Init(damage, count, dir);
     }

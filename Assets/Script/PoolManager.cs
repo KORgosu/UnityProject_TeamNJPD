@@ -21,25 +21,24 @@ public class PoolManager : MonoBehaviour
         }
     }
 
-    public GameObject Get(int i) // 
+    public GameObject Get(int i)
     {
         GameObject select = null;
 
         foreach (GameObject item in pools[i])
         {
-            if(!item.activeSelf)//�������� ��Ȱ��ȭ ���¸�
+            if(!item.activeSelf)
             {
                 select = item;
-                select.SetActive(true); // Ȱ��ȭ�� ��ȯ
+                select.SetActive(true);
                 break;
             }
         }
 
-        if (select == null) // ���� select ������ �ƹ��͵� ������
+        if (!select)
         {
-            // ���� ������Ʈ �����ؼ� ------------------>
-            select = Instantiate(prefabs[i], transform/*�ڱ��ڽſ� ����*/);
-            pools[i].Add(select); // pool���� ����ϱ�
+            select = Instantiate(prefabs[i], transform);
+            pools[i].Add(select);
         }
 
         return select;

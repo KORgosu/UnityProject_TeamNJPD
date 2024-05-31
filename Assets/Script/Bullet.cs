@@ -5,8 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float damage;
-
-    public int per; //
+    public int per;
 
     Rigidbody2D rigid;
     private void Awake()
@@ -20,7 +19,7 @@ public class Bullet : MonoBehaviour
 
         if (per > -1) // 만약 원거리무기라면
         {
-            rigid.velocity = dir * 10f; // 총알 속도관련
+            rigid.velocity = dir * 15f; // 총알 속도관련
         }
     }
 

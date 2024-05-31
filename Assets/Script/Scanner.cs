@@ -28,11 +28,11 @@ public class Scanner : MonoBehaviour
             Vector3 myPos = transform.position; // 현재 플레이어 위치
             Vector3 targetPos = target.transform.position; // 타겟의 위치
 
-            float posDiff = Vector3.Distance(myPos, targetPos); // 
+            float curDiff = Vector3.Distance(myPos, targetPos); // 
 
-            if (posDiff < diff) // 
+            if (curDiff < diff) // 
             {
-                diff = posDiff;
+                diff = curDiff;
                 result = target.transform;
             }
         }

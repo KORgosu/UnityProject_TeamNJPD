@@ -73,7 +73,7 @@ public class Monster : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 몬스터가 무기랑 충돌할때만
-        if (!collision.CompareTag("Bullet") || !isLive) // Bullet이랑 충돌한게 아니면
+        if (!collision.CompareTag("Bullet")) // Bullet이랑 충돌한게 아니면
         {
             return;
         }
@@ -109,10 +109,12 @@ public class Monster : MonoBehaviour
             
         }
 
+        
         void Dead()
         {
             gameObject.SetActive(false); // 비활성화
         }
+
     }
 
 
