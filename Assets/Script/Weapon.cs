@@ -18,9 +18,9 @@ public class Weapon : MonoBehaviour
         Init();
     }
 
-    private void Awake()
+    void Awake()
     {
-        player = GameManager.instance.player;
+        player = GetComponentInParent<Player>();
     }
 
     void Update()
@@ -60,7 +60,7 @@ public class Weapon : MonoBehaviour
         if (id == 0)  
             Batch();
 
-        player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver); // 무기가 업그레이드 될 때
+        //player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver); // 무기가 업그레이드 될 때
         
     }
     
@@ -96,11 +96,11 @@ public class Weapon : MonoBehaviour
                 Batch();
                 break;
             default:
-                speed = 2.5f;
+                speed = 1.0f; // 원거리무기 연사속도
                 break;
         }
 
-        player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver); // 무기가 새로 생성될 때 
+        //player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver); // 무기가 새로 생성될 때 
 
     }
 
@@ -137,15 +137,15 @@ public class Weapon : MonoBehaviour
             return;
         }
 
-        Vector3 targetPos = player.scanner.nearestTarget.position;
-        Vector3 dir = targetPos - transform.position;
-        dir = dir.normalized;
+        // 적을 향해 총알의 탄두가 바라보기
+        Vector3 targetPos = player.scanner.nearestTarget.position; // 위치
+        Vector3 dir = targetPos - transform.position;                           // 방향
+        dir = dir.normalized;                                                                       // 벡터크기 유지
 
         Transform bullet = GameManager.instance.pool.Get(prefabID).transform;
         bullet.position = transform.position;
+        bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);   // 축을 중심으로 목표를 향해 총알을 회전
 
-        
-        bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
-        bullet.GetComponent<Bullet>().Init(damage, count, dir);
+        bullet.GetComponent<Bullet>().Init(damage, count, dir); // 초기화함수
     }
 }

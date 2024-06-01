@@ -13,7 +13,7 @@ public class Monster : MonoBehaviour
     bool isLive = true; // 살아있는지 
 
     Rigidbody2D rigid; // 물리 움직임 선언
-    Collider2D coll;
+    Collider2D coll; // 몬스터 충돌관련(사망 시 비활성화)
     Animator anim;
     SpriteRenderer spriter; //스프라이트 선언
     WaitForFixedUpdate wait;
@@ -33,7 +33,7 @@ public class Monster : MonoBehaviour
         if (!GameManager.instance.isLive)
             return;
 
-        if (!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
+        if (!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit")) // 넉백발생 효과
             return;
 
         Vector2 dirVec = target.position - rigid.position;
@@ -54,9 +54,9 @@ public class Monster : MonoBehaviour
     {
         target = GameManager.instance.player.GetComponent<Rigidbody2D>();
         isLive = true;
-        coll.enabled = true;
+        coll.enabled = true; // 물리적 활성화
         rigid.simulated = true; // 물리적 활성화
-        spriter.sortingOrder = 2;
+        spriter.sortingOrder = 2; // Order in Layer 값 증가
         anim.SetBool("Dead", false); // 생존상태로 전환
         health = maxHealth;
     }
@@ -73,7 +73,7 @@ public class Monster : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 몬스터가 무기랑 충돌할때만
-        if (!collision.CompareTag("Bullet")) // Bullet이랑 충돌한게 아니면
+        if (!collision.CompareTag("Bullet") || !isLive) // Bullet이랑 충돌한게 아니면, !isLive -> 사망로직이 연달아 실행되는 것 방지
         {
             return;
         }
@@ -81,28 +81,29 @@ public class Monster : MonoBehaviour
          //무기에 맞으면 몬스터 체력이 깎이는 함수임
          //몬스터 체력부분 구현되면 주석제거 예정
         health -= collision.GetComponent<Bullet>().damage; // 피격 계산하기
-        StartCoroutine(KnockBack());
+        StartCoroutine(KnockBack()); // 코루틴 실행
 
         if (health > 0)
         {
+            // 몬스터가 생존했는데 타격할 시, Hit 애니메이션(흰색효과)
             anim.SetTrigger("Hit");
         }
         else
         {
             // 몬스터 사망
             isLive = false;
-            coll.enabled = false;
-            rigid.simulated = false; // 물리적 비활성화
-            spriter.sortingOrder = 1;
+            coll.enabled = false; // 물리적 비활성화
+            rigid.simulated = false; // 물리적 비활성화 리지드바디의 경우 simulated로
+            spriter.sortingOrder = 1; // Inspector -> Sprite Layer의 OrderLayer 감소
             anim.SetBool("Dead", true); // 사망상태로 전환
             GameManager.instance.kill++;
             GameManager.instance.GetExp();
         }
 
-        //코루틴 (넉백함수)
+        //코루틴 (넉백함수), OnTriggerEnter2D 에 사용
         IEnumerator KnockBack()
         {
-            yield return wait; // 프레임 딜레이
+            yield return wait; // 1 프레임 딜레이
             Vector3 playerPos = GameManager.instance.player.transform.position;
             Vector3 dirVec = transform.position - playerPos;
             rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse); // 즉발적으로 (Impulse) 넉백
