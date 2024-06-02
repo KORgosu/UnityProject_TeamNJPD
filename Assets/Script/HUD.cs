@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HUD : MonoBehaviour
+public class HUD : MonoBehaviour//Head Up Display
 {
     public enum InfoType { Exp, Level, Kill, Time, Health }  //UI창에 나타 낼 변수들 각각 "경험치, 레벨, 죽인 수, 시간 ,체력"
     public InfoType type;
@@ -22,9 +22,9 @@ public class HUD : MonoBehaviour
     {
         switch (type) {          
             case InfoType.Exp:
-            float curExp = GameManager.instance.exp;
-            float maxExp = GameManager.instance.nextExp[Mathf.Min(GameManager.instance.level, GameManager.instance.nextExp.Length - 1)];
-            mySlider.value = curExp / maxExp;
+                float curExp = GameManager.instance.exp;
+                float maxExp = GameManager.instance.nextExp[Mathf.Min(GameManager.instance.level, GameManager.instance.nextExp.Length - 1)];
+                mySlider.value = curExp / maxExp;
 
                 break;
             case InfoType.Health:
