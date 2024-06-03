@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 061a9668eeba8cc46a2f324cff72b09d, type: 3}
-  m_Name: GunWeaponData
+  m_Name: Item 1
   m_EditorClassIdentifier: 
   itemType: 1
   itemId: 1
   itemName: "\uC5FD\uCD1D"
   itemDesc: "\uB370\uBBF8\uC9C0 {0}% \uC99D\uAC00\n\uAD00\uD1B5\uB825 {1}\uAC1C \uC99D\uAC00"
   itemIcon: {fileID: -205726582, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-  baseDamage: 3
+  baseDamage: 3.5
   baseCount: 0
   damages:
   - 0.35
-  - 7
+  - 0.7
   - 1
   - 1.4
   - 2
-  counts: 0100000001000000010000000100000002000000
-  projectile: {fileID: 7629408649110511017, guid: 26bc8de683ac82b40a3a6a507ed7cbe3, type: 3}
+  counts: 0100000001000000020000000300000004000000
+  projectile: {fileID: 250490709526361054, guid: 38f9475851c598844a9917d44efe198a, type: 3}

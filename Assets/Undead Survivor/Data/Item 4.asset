@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 061a9668eeba8cc46a2f324cff72b09d, type: 3}
-  m_Name: HealData
+  m_Name: Item 4
   m_EditorClassIdentifier: 
   itemType: 4
   itemId: 4

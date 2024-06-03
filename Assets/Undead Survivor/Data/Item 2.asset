@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 061a9668eeba8cc46a2f324cff72b09d, type: 3}
-  m_Name: ShoeData
+  m_Name: Item 2
   m_EditorClassIdentifier: 
-  itemType: 3
-  itemId: 3
-  itemName: "\uC804\uD22C\uC7A5\uD654"
-  itemDesc: "\uC774\uB3D9\uC18D\uB3C4 {0}% \uC99D\uAC00"
-  itemIcon: {fileID: -966295699, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  itemType: 2
+  itemId: 2
+  itemName: "\uD14C\uD06C\uB2C8\uCEEC \uC7A5\uAC11"
+  itemDesc: "\uC5F0\uC0AC\uC18D\uB3C4 {0}% \uC99D\uAC00"
+  itemIcon: {fileID: -201829820, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   baseDamage: 0
   baseCount: 0
   damages:
   - 0.1
   - 0.2
-  - 0.3
-  - 0.4
+  - 0.35
   - 0.5
+  - 0.75
   counts: 0000000000000000000000000000000000000000
-  projectile: {fileID: 7949968416937221112, guid: 25826258b8af8e8419e3be69ab232b08, type: 3}
+  projectile: {fileID: 0}

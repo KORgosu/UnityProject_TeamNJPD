@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Weapon : MonoBehaviour
 {
@@ -13,14 +15,9 @@ public class Weapon : MonoBehaviour
     float timer;
     Player player;
 
-    private void Start()
-    {
-        Init();
-    }
-
     void Awake()
     {
-        player = GetComponentInParent<Player>();
+        player = GameManager.instance.player;
     }
 
     void Update()
@@ -60,14 +57,15 @@ public class Weapon : MonoBehaviour
         if (id == 0)  
             Batch();
 
-        //player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver); // 무기가 업그레이드 될 때
+
+        player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver); // 무기가 업그레이드 될 때
         
     }
     
 
-    public void Init()
+    public void Init(ItemData data)
     {
-        /*
+        
         // Basic Set
         name = "Weapon " + data.itemId;
         transform.parent = player.transform;
@@ -76,18 +74,16 @@ public class Weapon : MonoBehaviour
 
         // Property Set <-- 무기 속성 변수를 스크립터블 오브젝트 데이터로 초기화
         id = data.itemId;
-        damage = data.baseDamage;
-        count = data.baseCount;
+        damage = data.baseDamage; // 초반 대미지
+        count = data.baseCount; // 초반 총탄개수
 
+        // 프리팹에 넣기
         for (int index=0; index < GameManager.instance.pool.prefabs.Length; index++) {
             if (data.projectile == GameManager.instance.pool.prefabs[index]) {
                 prefabID = index;
                 break;
             }
         }
-        */
-
-
 
         switch(id)
         {
@@ -100,7 +96,7 @@ public class Weapon : MonoBehaviour
                 break;
         }
 
-        //player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver); // 무기가 새로 생성될 때 
+        player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver); // 무기가 새로 생성될 때 
 
     }
 
