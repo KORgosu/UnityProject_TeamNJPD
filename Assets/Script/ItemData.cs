@@ -23,5 +23,6 @@ public class ItemData : ScriptableObject //다양한 데이터를 저장하는 �
 
     [Header("# Weapon")] //투사체 프리팹
     public GameObject projectile;
+    public Sprite hand;
 
 }

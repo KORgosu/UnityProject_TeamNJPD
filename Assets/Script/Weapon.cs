@@ -96,6 +96,11 @@ public class Weapon : MonoBehaviour
                 break;
         }
 
+        // 손에 무기를 붙이는 과정
+        Hand hand = player.hands[(int)data.itemType]; // ItenData -> Itemtype 참고
+        hand.spriter.sprite = data.hand;
+        hand.gameObject.SetActive(true); // hand 활성화
+
         player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver); // 무기가 새로 생성될 때 
 
     }

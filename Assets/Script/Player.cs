@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     public Vector2 inputVec; // ����Ÿ�� : Vector2, ������ inputVec
     public float speed; // 이동 속도
     public Scanner scanner;
-    //public Hand[] hands;
+    public Hand[] hands; // 양손이니깐 배열로
     public RuntimeAnimatorController[] animCon;
 
     Rigidbody2D rigid;
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
         spriter = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
-        //hands = GetGomponetsInChildren<Hand>(true);
+        hands = GetComponentsInChildren<Hand>(true);
     }
 
     /*
