@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [Header("# Game Control")]
-    public bool isLive;
+    public bool isLive; // 시간 정지 여부
     public float gameTime;
     public float maxGameTime = 2 * 10f;
     [Header("# Player Info")]
@@ -33,6 +33,14 @@ public class GameManager : MonoBehaviour
         instance = this; // 초기화
     }
 
+    private void Start()
+    {
+        health = maxHealth;
+
+        uiLevelUp.Select(0);
+    }
+
+    /*
     public void GameStart(int id) {
         playerId = id;
         health = maxHealth;
@@ -42,6 +50,7 @@ public class GameManager : MonoBehaviour
         uiLevelUp.Select(playerId % 2); // 무기 지급
         Resume(); //재개
     }
+    */
 
     public void GameOver()
     {
@@ -90,10 +99,11 @@ public class GameManager : MonoBehaviour
             
         exp++;
 
-        if (exp == nextExp[level])  {
+        if (exp == nextExp[Mathf.Min(level, nextExp.Length-1)])  {
             level++;
             exp = 0;
-            //uiLevelUp.Show();
+            uiLevelUp.Show(); // level up ui 등장,
+            // 없애는건 각각의 아이템 그룹에서 Inspector -> Button -> On Click 에서 다룸
         }
     }
 
@@ -101,7 +111,7 @@ public class GameManager : MonoBehaviour
 
     void Update() 
     {
-        if(!isLive)
+        if(!isLive) // Player, Monster, Spawner, Weapon의 Update, FixedUpdate, LateUpdate에도 같은 함수
            return;
 
         gameTime += Time.deltaTime;
@@ -112,18 +122,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Stop() //멈추기
+    public void Stop() //레벨업 + 보상선택시 게임 멈추기
     {
         isLive = false;
         Time.timeScale = 0;      //유니티의 시간 속도, 0이면 멈춤
-
     }
 
-    public void Resume() //게임 재개
+    public void Resume() //보상 선택완료, 게임 재개
     {
         isLive = true;
         Time.timeScale = 1;
-
     }
 
 

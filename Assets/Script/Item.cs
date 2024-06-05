@@ -12,6 +12,8 @@ public class Item : MonoBehaviour
 
     Image icon;
     Text textLevel;
+    Text textName;
+    Text textDesc;
 
     void Awake()
     {
@@ -19,10 +21,15 @@ public class Item : MonoBehaviour
         icon.sprite = data.itemIcon;
   
         Text[] texts = GetComponentsInChildren<Text>();
+
+        // 계층구조 순서 주의
         textLevel = texts[0];
+        textName = texts[1];
+        textName.text = data.itemName; // 초기화
+        textDesc = texts[2];
     }
-    /*
-    void OnEnable() //아이템 텍스트 레벨, 퍼센트 나타나게 해주는 함수  
+    
+    void OnEnable() //활성화 되었을때 자동으로 발동. 아이템 텍스트 레벨, 퍼센트 나타나게 해주는 함수  
     {    
         textLevel.text = "Lv." + (level + 1); // LV 1부터 시작
 
@@ -30,7 +37,7 @@ public class Item : MonoBehaviour
         {
             case ItemData.ItemType.Melee:
             case ItemData.ItemType.Range:
-                textDesc.text = string.Format(data.itemDesc,data.damages[level] * 100 , data.counts[level]);
+                textDesc.text = string.Format(data.itemDesc, data.damages[level] * 100 , data.counts[level]);
                 break;
             case ItemData.ItemType.Glove:
             case ItemData.ItemType.Shoe:
@@ -42,12 +49,6 @@ public class Item : MonoBehaviour
         }
 
         
-    }
- */
-
-    void LateUpdate()
-    {
-        textLevel.text = "Lv." + (level + 1);
     }
     
     public void OnClick() // 버튼을 누를 시 어떤 상황이 발생하는가

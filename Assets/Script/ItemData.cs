@@ -11,7 +11,7 @@ public class ItemData : ScriptableObject //다양한 데이터를 저장하는 �
     public ItemType itemType;
     public int itemId;
     public string itemName;
-    [TextArea] // <-- 인스펙터에 텍스트를 여러 줄 넣을 수 있는 명령어
+    [TextArea] // <-- 인스펙터에 텍스트를 여러 줄 넣을 수 있는 명령어(Data-> Item -> Item Desc)
     public string itemDesc; // 아이템에 대한 설명
     public Sprite itemIcon; // 아이템의 아이콘 sprite 담기
 
