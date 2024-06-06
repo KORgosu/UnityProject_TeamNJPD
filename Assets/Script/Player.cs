@@ -66,7 +66,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void OnCollisionStay2D(Collision2D collision) // 물체와 부딪힐 시 상호작용
+    void OnCollisionStay2D(Collision2D collision) // 몬스터와 부딪힐 시 상호작용(체력감소)
     {
         if (!GameManager.instance.isLive)
             return;
@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
 
         if (GameManager.instance.health < 0) // 플레이어 체력이 0보다 낮으면
         {
-            for (int index=2; index < transform.childCount; index++) {
+            for (int index=2; index < transform.childCount; index++) { // 캐릭터 자식 오브젝트들 비활성화
                 transform.GetChild(index).gameObject.SetActive(false);
             }
             anim.SetTrigger("Dead"); //사망 애니메이션 활성화

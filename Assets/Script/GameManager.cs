@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement;  //scenemanager 사용을 위해
 
 
 public class GameManager : MonoBehaviour
@@ -32,38 +32,30 @@ public class GameManager : MonoBehaviour
 
         instance = this; // 초기화
     }
-
-    private void Start()
-    {
+    
+    public void GameStart() {
+       // playerId = id;
         health = maxHealth;
-
-        uiLevelUp.Select(0);
-    }
-
-    /*
-    public void GameStart(int id) {
-        playerId = id;
-        health = maxHealth;
-        isLive = true;
 
         player.gameObject.SetActive(true); //플레이어 활성화
-        uiLevelUp.Select(playerId % 2); // 무기 지급
+        uiLevelUp.Select(0); // 무기 지급
+        isLive = true;
         Resume(); //재개
     }
-    */
+    
 
     public void GameOver()
     {
         StartCoroutine(GameOverRoutine());
     }
 
-    IEnumerator GameOverRoutine()
+    IEnumerator GameOverRoutine() // 게임 오버때 시간지연을 위함
     {
         isLive = false;
 
         yield return new WaitForSeconds(0.5f);
 
-        uiResult.gameObject.gameObject.SetActive(true);
+        uiResult.gameObject.SetActive(true);
         uiResult.Lose();
         Stop();
     }
@@ -85,7 +77,7 @@ public class GameManager : MonoBehaviour
         Stop();
     }
     
-    public void GameRetry()
+    public void GameRetry() // 게임 재시작
     {
         SceneManager.LoadScene(0);
     }
