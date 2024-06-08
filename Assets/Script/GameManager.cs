@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-
         instance = this; // 초기화
     }
     

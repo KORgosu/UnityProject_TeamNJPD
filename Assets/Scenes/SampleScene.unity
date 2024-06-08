@@ -11344,13 +11344,11 @@ GameObject:
   m_Component:
   - component: {fileID: 915785825}
   - component: {fileID: 915785824}
+  - component: {fileID: 915785829}
   - component: {fileID: 915785826}
   - component: {fileID: 915785827}
-  - component: {fileID: 915785829}
   - component: {fileID: 915785828}
-  - component: {fileID: 915785830}
   - component: {fileID: 915785832}
-  - component: {fileID: 915785833}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -11488,8 +11486,6 @@ MonoBehaviour:
   animCon:
   - {fileID: 9100000, guid: 25697b35a3c6b434ca1bc89911f295b8, type: 2}
   - {fileID: 22100000, guid: f802499b0c0017347a49428afa8c62dd, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!95 &915785829
 Animator:
   serializedVersion: 4
@@ -11510,33 +11506,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &915785830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 915785823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd891124e9a9d9b409024873fdb9a04c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isLive: 1
-  gameTime: 0
-  maxGameTime: 20
-  playerId: 0
-  health: 100
-  maxHealth: 100
-  level: 1
-  nextExp: 03000000050000000a00000096000000d20000001801000068010000c201000058020000
-  kill: 0
-  exp: 0
-  player: {fileID: 0}
-  pool: {fileID: 0}
-  uiResult: {fileID: 0}
-  uiLevelUp: {fileID: 0}
-  enemyCleaner: {fileID: 0}
 --- !u!114 &915785832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11554,36 +11523,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   nearestTarget: {fileID: 0}
---- !u!114 &915785833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 915785823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: 0}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: 
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1 &954232769
 GameObject:
   m_ObjectHideFlags: 0
@@ -13432,7 +13371,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uACF5\uACA9\uC18D\uB3C4 10% \uC99D\uAC00"
+  m_Text: "\uC774\uB3D9\uC18D\uB3C4 10% \uC99D\uAC00"
 --- !u!222 &1348348052
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18639,7 +18578,7 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   level: 0
-  nextExp: 010000000200000003000000040000000500000006000000070000000800000009000000
+  nextExp: 01000000030000000500000007000000090000000b0000000d0000000f00000012000000
   kill: 0
   exp: 0
   player: {fileID: 915785828}
