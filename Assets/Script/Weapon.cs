@@ -91,7 +91,7 @@ public class Weapon : MonoBehaviour
                 Batch();
                 break;
             default:
-                speed = 1.0f; // 원거리무기 연사속도
+                speed = 0.5f * Character.LongShotWeaponSpeed; // 원거리무기 연사속도
                 break;
         }
 
