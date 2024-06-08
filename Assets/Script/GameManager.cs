@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public float gameTime;
     public float maxGameTime = 2 * 10f;
     [Header("# Player Info")]
-    public int playerId; // 남자농부 vs 농부딸
+    public int playerId; // 농장주  vs 농장주 딸
     public float health;
     public float maxHealth = 100;
     public int level;
@@ -33,13 +33,13 @@ public class GameManager : MonoBehaviour
         instance = this; // 초기화
     }
     
-    public void GameStart() {
-       // playerId = id;
+    public void GameStart(int id) {
+        playerId = id;
         health = maxHealth;
 
-        player.gameObject.SetActive(true); //플레이어 활성화
-        uiLevelUp.Select(0); // 무기 지급
-        isLive = true;
+        player.gameObject.SetActive(true); // 캐릭터 선택 후 플레이어 활성화
+        uiLevelUp.Select(playerId % 2); // 무기 지급, 캐릭터의 개수만큼 나누어줌
+
         Resume(); //재개
     }
     

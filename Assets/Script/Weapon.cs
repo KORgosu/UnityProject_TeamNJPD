@@ -73,6 +73,7 @@ public class Weapon : MonoBehaviour
         // Property Set <-- 무기 속성 변수를 스크립터블 오브젝트 데이터로 초기화
         id = data.itemId;
         damage = data.baseDamage; // 초반 대미지
+        damage *= Character.AttackDamage;
         count = data.baseCount; // 초반 총탄개수
 
         // 프리팹에 넣기

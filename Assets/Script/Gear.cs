@@ -60,7 +60,7 @@ public class Gear : MonoBehaviour
 
     void SpeedUp() //장화 이동속도 올리기
     {
-        float speed = 3;
+        float speed = 3 * Character.MovingSpeed;
         GameManager.instance.player.speed = speed + speed * rate;
 
     }

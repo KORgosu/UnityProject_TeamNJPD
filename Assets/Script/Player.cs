@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public float speed; // 이동 속도
     public Scanner scanner;
     public Hand[] hands; // 양손이니깐 배열로
-    public RuntimeAnimatorController[] animCon;
+    public RuntimeAnimatorController[] animCon; // 플레이어 스크립트 지정
 
     Rigidbody2D rigid;
     Animator anim;
@@ -25,12 +25,12 @@ public class Player : MonoBehaviour
         hands = GetComponentsInChildren<Hand>(true);
     }
 
-    /*
-    void OnEnable()
-    {
+    
+    void OnEnable() // 캐릭터 애니메이터 변경로직
+    {    
         anim.runtimeAnimatorController = animCon[GameManager.instance.playerId];
     }
-    */
+    
 
     void Update()
     {
