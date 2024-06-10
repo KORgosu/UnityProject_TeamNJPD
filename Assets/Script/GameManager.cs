@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         instance = this; // 초기화
     }
     
-    public void GameStart(int id) {
+    public void GameStart(int id) { //게임시작
         playerId = id;
         health = maxHealth;
 
@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
         uiLevelUp.Select(playerId % 2); // 무기 지급, 캐릭터의 개수만큼 나누어줌
 
         Resume(); //재개
+        AudioManager.instance.PlayBgm(true); // 배경음 on
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Select); // 게임 시작시 SFX 재생
     }
     
 
@@ -57,6 +59,9 @@ public class GameManager : MonoBehaviour
         uiResult.gameObject.SetActive(true);
         uiResult.Lose();
         Stop();
+
+        AudioManager.instance.PlayBgm(false); // 배경음 off
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Lose); // 게임 패배시 SFX 재생
     }
 
     public void GameVictory()
@@ -74,6 +79,8 @@ public class GameManager : MonoBehaviour
         uiResult.gameObject.SetActive(true);
         uiResult.Win();
         Stop();
+        AudioManager.instance.PlayBgm(false); // 배경음 off
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Win); // 게임 승리시 SFX 재생
     }
     
     public void GameRetry() // 게임 재시작

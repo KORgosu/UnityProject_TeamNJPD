@@ -87,6 +87,7 @@ public class Monster : MonoBehaviour
         {
             // 몬스터가 생존했는데 타격할 시, Hit 애니메이션(흰색효과)
             anim.SetTrigger("Hit");
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit); // 몬스터 타격시 SFX 재생
         }
         else
         {
@@ -98,6 +99,9 @@ public class Monster : MonoBehaviour
             anim.SetBool("Dead", true); // 사망상태로 전환
             GameManager.instance.kill++;
             GameManager.instance.GetExp();
+
+            if (GameManager.instance.isLive == true) // EnemyCleaner 사용시 sfx 재생 X
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead); // 몬스터 처치시 SFX 재생
         }
 
         //코루틴 (넉백함수), OnTriggerEnter2D 에 사용

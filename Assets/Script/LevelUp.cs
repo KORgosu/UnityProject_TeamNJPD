@@ -20,13 +20,17 @@ public class LevelUp : MonoBehaviour // 레벨업 시 등장하는 화면 스케
         Next();
         rect.localScale = Vector3.one;
         GameManager.instance.Stop(); // 시간 정지
-        
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.LevelUp); // 레벨업 시 SFX 재생
+        AudioManager.instance.LvUpBgm(true); // 레벨업시 bgm 가속
+
     }
 
     public void Hide() // 레벨업 보상 화면없앰
     {
         rect.localScale = Vector3.zero;
         GameManager.instance.Resume(); // 시간 재개
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Select); // 보상 선택 시 SFX 재생
+        AudioManager.instance.LvUpBgm(false);
     }
     
     //0
