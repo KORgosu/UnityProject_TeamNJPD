@@ -126,7 +126,7 @@ public class Weapon : MonoBehaviour
             Vector3 rotateVector = Vector3.forward * 360 * i / count; // 근접무기 뺑뺑이 각도 설정
             bullet.Rotate(rotateVector); // 근접무기 회전
             bullet.Translate(bullet.up * 1.4f, Space.World); // 무기가 배치될 곳은 캐릭터로부터 1.4 공간
-            bullet.GetComponent<Bullet>().Init(damage, -1, Vector3.zero); //  : -1 is infinity per.
+            bullet.GetComponent<Bullet>().Init(damage, -100, Vector3.zero); //  : -1 is infinity per.
         }
     }
 
