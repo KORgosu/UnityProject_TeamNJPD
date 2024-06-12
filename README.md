@@ -20,4 +20,7 @@ Vampire Survival Like Game, 2D,
 
 [구현 모습]
 ![1](https://github.com/KORgosu/UnityProject_TeamNJPD/assets/47071344/3adc17a7-a012-4557-ad48-e01bb20dbc98)
-          
+
+
+[실행 방법]
+zip파일 다운로드 -> VamSurLikeProject.exe 파일 실행
