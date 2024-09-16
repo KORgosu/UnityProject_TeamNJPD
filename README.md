@@ -32,4 +32,5 @@ Assets -> Script
 
 [실행 방법]
 zip파일 다운로드 -> VamSurLikeProject.exe 파일 실행
+
 전체 파일을 다운받고 유니티 허브로 오픈할 경우 Scene -> SampleScene으로 진입해야 게임실행 가능
