@@ -6,6 +6,11 @@ Vampire Survival Like Game, 2D,
 [Team 나주포대 두 번째 팀 게임 제작 프로젝트, 뱀서라이크 장르, 유니티 플랫폼을 이용하여 제작]
 
 
+[구현 영상]
+
+https://youtu.be/5HbVv987mTU
+
+
 사용언어 : C#
 
 
