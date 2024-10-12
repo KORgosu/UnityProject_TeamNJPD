@@ -3,6 +3,9 @@ UNITY TEAM GAME PROJECT_TEAM_NJPD
 Vampire Survival Like Game, 2D, 
 
 
+![image](https://github.com/user-attachments/assets/a6a082f0-aee7-4b24-a438-1f8417df514f)
+
+
 [Team 나주포대 두 번째 팀 게임 제작 프로젝트, 뱀서라이크 장르, 유니티 플랫폼을 이용하여 제작]
 
 
@@ -37,10 +40,6 @@ C#
 https://youtu.be/MmW166cHj54?si=OMvPGYwgJsbe8ykQ [유튜브 골드메탈 : 뱀서라이크 제작]
 
 
-
-[구현 모습]
-
-![image](https://github.com/user-attachments/assets/a6a082f0-aee7-4b24-a438-1f8417df514f)
 
 
 
