@@ -21,12 +21,47 @@ Vampire Survival Like Game, 2D,
 https://youtu.be/MmW166cHj54?si=OMvPGYwgJsbe8ykQ [유튜브 골드메탈 : 뱀서라이크 제작]
 
 
+
+[구현 모습]
+
+![image](https://github.com/user-attachments/assets/a6a082f0-aee7-4b24-a438-1f8417df514f)
+
+
+[플레이 장면]
+
+![image](https://github.com/user-attachments/assets/2f3b7032-ad27-4781-995f-90908d2702d0)
+
+
+[레벨업, 선택지 출력]
+
+![image](https://github.com/user-attachments/assets/4183ac18-a2ef-4208-8f17-01ef88c25504)
+
+
+[게임 실패]
+
+![image](https://github.com/user-attachments/assets/be234f32-a86b-406f-853b-cba68b3d7a1b)
+
+
+[게임 승리]
+
+![image](https://github.com/user-attachments/assets/cb609bc5-a5a7-4fb8-a0ad-98d3b9c2cd2e)
+
+
+[실행 방법]
+
+Code -> Download zip -> VamSurLikeProject.exe 파일 실행
+
+
+전체 파일을 다운받고 유니티 허브로 오픈할 경우 Scene -> SampleScene으로 진입해야 게임실행 가능
+
+
 [전체코드 위치 및 간략한 설명]
 파일위치 : Assets/Script
 
 AudioManager.cs
 
 : 배경음, 레벨업을 했을 때, 몬스터를 처치할 때의 효과음 등을 관리하는 스크립트
+
 Bullet.cs
 
 : 플레이어의 무기를 관리하는 스크립트. 근거리 무기와 원거리 무기의 충돌 시스템 및 관통 시스템을 관리하는 스크립트
@@ -98,40 +133,6 @@ Spawner.cs
 Weapon.cs
 
 : 캐릭터 무기의 레벨업에 따른 무기 개수, 대미지, 캐릭터 위치에 따른 배치 위치, 원거리 무기에 대한 발사 방향 등을 관리하는 스크립트
-
-
-
-[구현 모습]
-
-![image](https://github.com/user-attachments/assets/a6a082f0-aee7-4b24-a438-1f8417df514f)
-
-
-[플레이 장면]
-
-![image](https://github.com/user-attachments/assets/2f3b7032-ad27-4781-995f-90908d2702d0)
-
-
-[레벨업, 선택지 출력]
-
-![image](https://github.com/user-attachments/assets/4183ac18-a2ef-4208-8f17-01ef88c25504)
-
-
-[게임 실패]
-
-![image](https://github.com/user-attachments/assets/be234f32-a86b-406f-853b-cba68b3d7a1b)
-
-
-[게임 승리]
-
-![image](https://github.com/user-attachments/assets/cb609bc5-a5a7-4fb8-a0ad-98d3b9c2cd2e)
-
-
-[실행 방법]
-
-Code -> Download zip -> VamSurLikeProject.exe 파일 실행
-
-
-전체 파일을 다운받고 유니티 허브로 오픈할 경우 Scene -> SampleScene으로 진입해야 게임실행 가능
 
 
 [파트 분배]
