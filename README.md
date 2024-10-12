@@ -6,23 +6,34 @@ Vampire Survival Like Game, 2D,
 [Team 나주포대 두 번째 팀 게임 제작 프로젝트, 뱀서라이크 장르, 유니티 플랫폼을 이용하여 제작]
 
 
+
 [구현 영상]
 
 https://youtu.be/5HbVv987mTU
 
 
-사용언어 : C#
+
+[사용언어]
+
+C#
 
 
-사용툴 : 노션, 유니티(2021.3.2.f1 ver), 깃(포크), Github Desktop
+
+[사용툴]
+
+노션, 유니티(2021.3.2.f1 ver), 깃(포크), Github Desktop
 
 
-목적 : 
+
+[목적]
+
 팀프로젝트 진행 중 파트분배의 어려움을 느껴 좀 더 체계적인 팀 빌딩 능력을 기르기 위해, 코드 사용 숙련도 증가를 위해 프로젝트 진행
 객체지향의 구조와 게임 구조에 대한 전반적인 이해를 위해 프로젝트 진행
 
 
-참고 : 
+
+[참고]
+
 https://youtu.be/MmW166cHj54?si=OMvPGYwgJsbe8ykQ [유튜브 골드메탈 : 뱀서라이크 제작]
 
 
@@ -32,9 +43,11 @@ https://youtu.be/MmW166cHj54?si=OMvPGYwgJsbe8ykQ [유튜브 골드메탈 : 뱀�
 ![image](https://github.com/user-attachments/assets/a6a082f0-aee7-4b24-a438-1f8417df514f)
 
 
+
 [플레이 장면]
 
 ![image](https://github.com/user-attachments/assets/2f3b7032-ad27-4781-995f-90908d2702d0)
+
 
 
 [레벨업, 선택지 출력]
@@ -42,9 +55,11 @@ https://youtu.be/MmW166cHj54?si=OMvPGYwgJsbe8ykQ [유튜브 골드메탈 : 뱀�
 ![image](https://github.com/user-attachments/assets/4183ac18-a2ef-4208-8f17-01ef88c25504)
 
 
+
 [게임 실패]
 
 ![image](https://github.com/user-attachments/assets/be234f32-a86b-406f-853b-cba68b3d7a1b)
+
 
 
 [게임 승리]
@@ -52,12 +67,15 @@ https://youtu.be/MmW166cHj54?si=OMvPGYwgJsbe8ykQ [유튜브 골드메탈 : 뱀�
 ![image](https://github.com/user-attachments/assets/cb609bc5-a5a7-4fb8-a0ad-98d3b9c2cd2e)
 
 
+
 [실행 방법]
 
 Code -> Download zip -> VamSurLikeProject.exe 파일 실행
 
 
+
 전체 파일을 다운받고 유니티 허브로 오픈할 경우 Scene -> SampleScene으로 진입해야 게임실행 가능
+
 
 
 [전체코드 위치 및 간략한 설명]
