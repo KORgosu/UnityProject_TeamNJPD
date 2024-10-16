@@ -10,7 +10,7 @@ Vampire Survival Like Game, 2D,
 
 
 
-[구현 영상]
+[플레이 영상]
 
 https://youtu.be/5HbVv987mTU
 
